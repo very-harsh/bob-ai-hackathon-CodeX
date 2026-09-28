@@ -50,10 +50,10 @@ Categorizes items into clear dispatch timelines (IMMEDIATE, SAME SHIFT, NORMAL Q
 | Category | Technologies |
 |---|---|
 | **Languages** | JavaScript,CSS |
-| **Frameworks** | [e.g., FastAPI, React] |
+| **Frameworks** | React |
 | **IBM Technologies** | IBM Bob |
-| **Databases** | [e.g., PostgreSQL, Redis] |
-| **Other** | [e.g., Docker, GitHub Actions] |
+| **Databases** | |
+| **Other** | GitHub Actions |
 
 ---
 
