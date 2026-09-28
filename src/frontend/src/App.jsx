@@ -19,6 +19,8 @@ import {
 } from "lucide-react";
 import "./App.css";
 
+const API_URL = "http://localhost:3001";
+
 const crimeTypes = [
   "Murder",
   "Burglary",
@@ -51,124 +53,6 @@ const initialEvidence = [
     location: "Control Office B",
     condition: "Stable / Protected",
     timeSinceRecovery: "2 hours",
-  },
-];
-
-const mockResults = [
-  {
-    rank: 1,
-    matrixId: "EVID-038",
-    priority: 5,
-    group: "Immediate",
-    category: "Biological",
-    description:
-      "Half-burnt cigarette butt recovered near victim vehicle",
-    location: "Sector 3 Dirt Path",
-    condition: "Exposed",
-    urgency: "URGENT",
-    flag: "HIDDEN VALUE",
-    lab: "DNA / Biological Examination",
-    testing: "DNA profiling; biological screening",
-    preservation: "Immediate preservation",
-    reasoning:
-      "A cigarette butt may appear routine but can carry saliva or other biological material. Because it was recovered in a violent-crime context and is environmentally exposed, its evidentiary value may decrease with delay.",
-    handling:
-      "Handle with clean gloves, avoid touching the mouthpiece, air-dry if wet, and package according to applicable biological evidence procedures.",
-  },
-  {
-    rank: 2,
-    matrixId: "EVID-053",
-    priority: 5,
-    group: "Immediate",
-    category: "Digital",
-    description: "Highway Toll Plaza CCTV DVR Hard Drive",
-    location: "Control Office B",
-    condition: "Stable / Protected",
-    urgency: "URGENT",
-    flag: "AUTO_ESCALATE_URGENT",
-    lab: "Digital Forensics Laboratory",
-    testing: "Forensic imaging and video examination",
-    preservation: "Immediate digital preservation",
-    reasoning:
-      "Digital video may contain time-sensitive information and can be affected by overwrite or improper handling. The device should be preserved before routine access or examination.",
-    handling:
-      "Maintain chain of custody and use appropriate forensic acquisition procedures. Do not browse or alter the original media.",
-  },
-  {
-    rank: 3,
-    matrixId: "EVID-026",
-    priority: 4,
-    group: "Same Day",
-    category: "Impression",
-    description: "Partial footprint recovered in mud",
-    location: "Rear garden",
-    condition: "Wet / Moist",
-    urgency: "HIGH",
-    flag: "AUTO_ESCALATE_URGENT",
-    lab: "Impression Evidence Laboratory",
-    testing: "Footwear impression examination",
-    preservation: "Same-day documentation and preservation",
-    reasoning:
-      "A mud impression can deteriorate through drying, disturbance or environmental exposure. Documentation and preservation should occur promptly.",
-    handling:
-      "Photograph with scale before collection or casting. Protect the impression from further disturbance and follow applicable casting procedures.",
-  },
-  {
-    rank: 4,
-    matrixId: "EVID-063",
-    priority: 3,
-    group: "Standard — 48–72 Hours",
-    category: "Trace / Biological",
-    description: "Blood-stained clothing",
-    location: "Bedroom floor",
-    condition: "Stable / Protected",
-    urgency: "STANDARD",
-    flag: "AUTO_ESCALATE_LAB",
-    lab: "Biological Examination Laboratory",
-    testing: "DNA examination and biological screening",
-    preservation: "Controlled storage",
-    reasoning:
-      "Blood-stained clothing may provide biological evidence and should be preserved appropriately. Under controlled conditions it can enter the standard examination queue.",
-    handling:
-      "Package biological material appropriately and maintain chain of custody. Avoid unnecessary handling or contamination.",
-  },
-  {
-    rank: 5,
-    matrixId: "EVID-031",
-    priority: 3,
-    group: "Standard — 48–72 Hours",
-    category: "Trace",
-    description: "Torn cloth recovered from fence",
-    location: "Perimeter fence",
-    condition: "Stable / Protected",
-    urgency: "STANDARD",
-    flag: "NONE",
-    lab: "Trace Evidence Laboratory",
-    testing: "Fiber and trace comparison",
-    preservation: "Standard evidence storage",
-    reasoning:
-      "The fabric may provide associative trace evidence. It should be preserved without unnecessary handling and examined within the standard queue.",
-    handling:
-      "Package separately to prevent transfer of fibers or other trace material.",
-  },
-  {
-    rank: 6,
-    matrixId: "EVID-068",
-    priority: 2,
-    group: "Batch",
-    category: "Documentary",
-    description: "Insurance papers recovered from scene",
-    location: "Office desk",
-    condition: "Stable / Protected",
-    urgency: "ROUTINE",
-    flag: "NONE",
-    lab: "Document Examination",
-    testing: "Document examination if required",
-    preservation: "Standard document storage",
-    reasoning:
-      "The item is primarily contextual and does not normally require immediate laboratory processing unless additional investigative information indicates otherwise.",
-    handling:
-      "Maintain document integrity and chain of custody.",
   },
 ];
 
@@ -239,6 +123,8 @@ function App() {
     "Awaiting evidence analysis"
   );
 
+  const [error, setError] = useState("");
+
   useEffect(() => {
     if (!analysing) {
       return;
@@ -250,12 +136,6 @@ function App() {
       setTimeout(() => setAnalysisStep(1), 650),
       setTimeout(() => setAnalysisStep(2), 1300),
       setTimeout(() => setAnalysisStep(3), 1950),
-      setTimeout(() => {
-        setResults(mockResults);
-        setAnalysing(false);
-        setCaseStatus("COMPLETE");
-        setCaseStatusText("Priority queue generated");
-      }, 2700),
     ];
 
     return () => {
@@ -288,16 +168,120 @@ function App() {
     setEvidence(evidence.filter((item) => item.id !== id));
   }
 
-  function analyseEvidence() {
+  async function analyseEvidence() {
     if (evidence.length === 0) {
       return;
     }
 
     setResults([]);
     setExpanded(null);
+    setError("");
     setAnalysing(true);
+    setAnalysisStep(0);
     setCaseStatus("ANALYSING");
     setCaseStatusText("Evaluating evidence");
+
+    try {
+      const response = await fetch(`${API_URL}/api/triage`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          caseId,
+          crimeType,
+          evidenceItems: evidence.map((item) => ({
+            description: item.description,
+            location: item.location,
+            condition: item.condition,
+            timeSinceRecovery: item.timeSinceRecovery,
+          })),
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Backend returned HTTP ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      if (!data.success) {
+        throw new Error(data.error || "Triage failed.");
+      }
+
+      const mappedResults = data.results.map((item) => {
+        const urgency =
+          item.urgent || item.finalPriority === 5
+            ? "URGENT"
+            : item.finalPriority === 4
+              ? "HIGH"
+              : item.finalPriority === 3
+                ? "STANDARD"
+                : "ROUTINE";
+
+        const flag =
+          item.flag && item.flag !== "NORMAL"
+            ? item.flag
+            : "NONE";
+
+        const group =
+          item.priorityLabel === "Immediate"
+            ? "Immediate"
+            : item.priorityLabel === "Same day"
+              ? "Same Day"
+              : item.priorityLabel === "Standard 48-72h"
+                ? "Standard — 48–72 Hours"
+                : item.priorityLabel === "Batch"
+                  ? "Batch"
+                  : "No Lab Action";
+
+        return {
+          rank: item.rank,
+          matrixId: item.matrixId,
+          priority: item.finalPriority,
+          group,
+          category: item.category,
+          description: item.item,
+          location:
+            evidence.find(
+              (evidenceItem) =>
+                evidenceItem.description === item.item
+            )?.location || "Location not specified",
+          condition:
+            evidence.find(
+              (evidenceItem) =>
+                evidenceItem.description === item.item
+            )?.condition || "Unknown",
+          urgency,
+          flag,
+          lab: item.category || "Forensic Laboratory",
+          testing: item.testingRequired,
+          preservation: item.collectionMethod,
+          reasoning: item.reason,
+          handling: `Collection method: ${item.collectionMethod} Chain-of-custody sensitivity: ${item.chainOfCustodySensitivity}.`,
+          matchScore: item.matchScore,
+          urgentNote: item.urgentNote,
+        };
+      });
+
+      setAnalysisStep(3);
+
+      setTimeout(() => {
+        setResults(mappedResults);
+        setAnalysing(false);
+        setCaseStatus("COMPLETE");
+        setCaseStatusText("Priority queue generated");
+      }, 500);
+    } catch (err) {
+      console.error(err);
+
+      setAnalysing(false);
+      setCaseStatus("READY");
+      setCaseStatusText("Analysis failed");
+      setError(
+        `Unable to connect to the forensic triage backend. Make sure the backend is running on ${API_URL}.`
+      );
+    }
   }
 
   function toggleReasoning(rank) {
@@ -311,6 +295,7 @@ function App() {
   function resetAnalysis() {
     setResults([]);
     setExpanded(null);
+    setError("");
     setCaseStatus("READY");
     setCaseStatusText("Awaiting evidence analysis");
   }
@@ -589,6 +574,18 @@ function App() {
           </button>
         </section>
 
+        {error && (
+          <div className="limits-panel">
+            <AlertTriangle size={16} />
+
+            <div>
+              <strong>BACKEND CONNECTION ERROR</strong>
+
+              <p>{error}</p>
+            </div>
+          </div>
+        )}
+
         {analysing && (
           <section className="analysis-panel">
             <div className="analysis-header">
@@ -749,7 +746,9 @@ function App() {
 
                       <div className="priority-group-count">
                         {groupItems.length}
-                        <span>ITEM{groupItems.length !== 1 ? "S" : ""}</span>
+                        <span>
+                          ITEM{groupItems.length !== 1 ? "S" : ""}
+                        </span>
                       </div>
                     </div>
 
@@ -824,7 +823,7 @@ function App() {
                                 <ShieldAlert size={14} />
 
                                 <div>
-                                  <span>PRESERVATION</span>
+                                  <span>PRESERVATION / COLLECTION</span>
                                   <strong>{item.preservation}</strong>
                                 </div>
                               </div>
@@ -837,6 +836,17 @@ function App() {
                                 <div>
                                   <span>AUTOMATION / VALUE FLAG</span>
                                   <strong>{item.flag}</strong>
+                                </div>
+                              </div>
+                            )}
+
+                            {item.urgentNote && (
+                              <div className="flag-row">
+                                <AlertTriangle size={14} />
+
+                                <div>
+                                  <span>URGENT ACTION</span>
+                                  <strong>{item.urgentNote}</strong>
                                 </div>
                               </div>
                             )}
@@ -864,8 +874,18 @@ function App() {
                                 <p>{item.reasoning}</p>
 
                                 <div className="handling-note">
-                                  <strong>HANDLING NOTE</strong>
+                                  <strong>HANDLING / CHAIN OF CUSTODY</strong>
                                   <p>{item.handling}</p>
+                                </div>
+
+                                <div className="handling-note">
+                                  <strong>MATRIX MATCH CONFIDENCE</strong>
+                                  <p>
+                                    {Math.round(
+                                      (item.matchScore || 0) * 100
+                                    )}
+                                    %
+                                  </p>
                                 </div>
                               </div>
                             )}

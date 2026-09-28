@@ -1,0 +1,12 @@
+MOCK DATA - invented for testing. Not a real case.
+
+Crime type: Murder (outdoor scene, roadside, night)
+Items found:
+1. Cigarette butt near the victim's body
+2. Victim's mobile phone, screen locked, on the ground
+3. Partial footprint in mud near the road
+4. Blood-stained clothing on the victim
+5. Empty plastic water bottle 20 metres away
+6. Tyre marks on the road shoulder
+7. Torn piece of cloth caught on a fence
+8. Roadside shop CCTV DVR

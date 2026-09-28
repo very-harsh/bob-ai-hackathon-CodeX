@@ -1,0 +1,12 @@
+MOCK DATA - invented for testing. Not a real case.
+
+Crime type: Burglary (residential house, entry at night)
+Items found:
+1. Pry marks on the rear window frame
+2. Partial shoe print on the garden soil below the window
+3. Broken glass fragments on the floor, one with a small blood stain
+4. Single work glove dropped in the garden
+5. Wiped-looking area on the almirah handle
+6. Neighbour's doorbell camera covering the lane (footage not yet copied)
+7. Half-eaten snack wrapper on the kitchen counter, not belonging to the family
+8. Empty jewellery box

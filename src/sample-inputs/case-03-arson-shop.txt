@@ -1,0 +1,12 @@
+MOCK DATA - invented for testing. Not a real case.
+
+Crime type: Arson (small shop fire, early morning)
+Items found:
+1. Plastic can smelling of petrol, found near the back door
+2. Charred debris from the suspected point of origin
+3. Burn pattern photographs (45 photos of the same room)
+4. Shop CCTV DVR, casing partly melted
+5. Matchbox with a few matches left, found outside the shutter
+6. Owner's mobile phone, powered on, with an unread message notification
+7. Footprints in soot near the entrance
+8. Insurance papers found in the office drawer

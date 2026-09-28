@@ -1,47 +1,13 @@
-# Source Code
+# src/ layout
 
-Place all your project's source code in this folder.
+This project is an **AI assistant that runs inside IBM Bob**, so there is no separate backend or web app. The assistant is defined by plain-text configuration:
 
-## Structure Guidelines
+| Path | What it is |
+|---|---|
+| `../.bob/skills/evidence-triage/SKILL.md` | The assistant's logic: categories, scoring rubric, crime-type weights, urgent and hidden-value rules, and the exact output format. Bob loads this from the project. |
+| `sample-inputs/` | Mock crime scene cases used to test and demonstrate the assistant. All data is invented. |
+| `.env.example` | Environment variables. None are required. |
 
-Organize your code logically. Here are common patterns — use whatever fits
-your project:
+Bob requires the skill to sit under `.bob/skills/` at the repository root, which is why it is not inside `src/`.
 
-### Web Application
-```
-src/
-  backend/        ← API server code
-  frontend/       ← UI code
-  shared/         ← Shared utilities/types
-```
-
-### Data / AI Project
-```
-src/
-  data/           ← Data ingestion / preprocessing
-  models/         ← ML model code
-  api/            ← Serving layer
-  notebooks/      ← Jupyter notebooks (exploration)
-```
-
-### CLI / Script-based Tool
-```
-src/
-  cli/            ← CLI entry points
-  lib/            ← Core logic
-  utils/          ← Helpers
-```
-
-## Important Files to Include
-
-- `requirements.txt` or `package.json` — dependency manifest
-- `.env.example` — template for environment variables (NEVER commit `.env`)
-- Any database migration files
-- Configuration files
-
-## What NOT to Include in src/
-
-- `.env` files with real secrets
-- Large binary files (use Git LFS or link externally)
-- `node_modules/` or `venv/` (these are in `.gitignore`)
-- Build artifacts (`dist/`, `build/`, `__pycache__/`)
+To run the assistant, see `../docs/setup-guide.md`.
