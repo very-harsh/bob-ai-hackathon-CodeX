@@ -26,12 +26,11 @@ submission:
   title: "Evidence Prioritisation Dashboard"                            # REQUIRED — Project display name, e.g., "SmartOps Dashboard"
 
   problem_statement: >                 # REQUIRED — 1-3 sentences. What problem? Who has it?
-    Replace this text with a concise description of the real-world problem
-    your project addresses and who experiences it.
+   The problem is unordered list of evidenced found at the crime scene during crime scene investigation by the investigators.
 
   solution_summary: >                  # REQUIRED — 1-3 sentences. What did you build?
-    Replace this text with a clear description of your solution
-    and how it addresses the problem above.
+    we have built an IBM BOB powered assistant that takes the list of evidences as input.
+    It gives a Structured and ordered list of evidences according to the priority required for the evidencege
 
   key_features:                        # REQUIRED — List 3 to 5 specific features you implemented
     - ""                               # e.g., "Real-time pipeline anomaly detection using watsonx.ai"
@@ -41,19 +40,17 @@ submission:
     - ""                               # optional 5th
 
   tech_stack:
-    languages: []                      # REQUIRED — e.g., ["Python", "TypeScript"]
-    frameworks: []                     # e.g., ["FastAPI", "React"]
-    ibm_technologies: []               # e.g., ["watsonx.ai", "IBM Bob", "IBM Cloud Functions"]
-    databases: []                      # e.g., ["PostgreSQL", "Redis"]
+    languages: Javascript , node.js , css , csv                      # REQUIRED — e.g., ["Python", "TypeScript"]
+    frameworks: React                    # e.g., ["FastAPI", "React"]
+    ibm_technologies: IBM Bob               # e.g., ["watsonx.ai", "IBM Bob", "IBM Cloud Functions"]
+    databases:                       # e.g., ["PostgreSQL", "Redis"]
     other: []                          # e.g., ["Docker", "GitHub Actions", "Slack API"]
 
   what_we_are_most_proud_of: >         # Optional but recommended — guides judges to your best work
-    Replace with what aspect of the submission you consider strongest
-    and want judges to pay special attention to.
+    The Prioritisation of the evidence according to the urgency and the Ease of UI 
 
   known_limitations: >                 # Optional but recommended — be honest about gaps
-    Replace with any known limitations, incomplete features,
-    or shortcuts taken due to time constraints.
+    it May not work for all the possible scenarios.
 
 # =============================================================================
 # ARTIFACT LOCATIONS
