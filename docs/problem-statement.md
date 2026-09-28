@@ -34,4 +34,4 @@ At modern crime scenes, the rate of evidence collection drastically outpaces the
 3. **High Latency & Expensive AI Tools:** Many modern tech proposals assume heavy compute pipelines, cloud dependencies, or costly fine-tuned models that are slow, fail offline, and consume unsustainable API budgets.
 4. **Disconnection from Forensic Science:** Generic AI chatbots lack domain guardrails and tend to hallucinate legal and chain-of-custody protocols.
 
-**Triage.AI** bridges this divide by combining an authoritative forensic prioritization matrix with an agentic, zero-shot inference pipeline—delivering deterministic, explainable, and resource-efficient evidence ranking in seconds.
+**Forensic Triage.AI** bridges this divide by combining an authoritative forensic prioritization matrix with an agentic, zero-shot inference pipeline—delivering deterministic, explainable, and resource-efficient evidence ranking in seconds.
