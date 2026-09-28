@@ -33,7 +33,7 @@ submission:
     It gives a Structured and ordered list of evidences according to the priority required for the evidencege
 
   key_features:                        # REQUIRED — List 3 to 5 specific features you implemented
-    - ""                               # e.g., "Real-time pipeline anomaly detection using watsonx.ai"
+    - "Evidence priority based on crime scene description"                               # e.g., "Real-time pipeline anomaly detection using watsonx.ai"
     - ""
     - ""
     - ""                               # optional 4th
