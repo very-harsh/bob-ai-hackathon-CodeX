@@ -41,7 +41,7 @@ Intelligently recalibrates base priority scores to flag urgent degradation hazar
 - **Feature 4:** Automated FSL Submission Scheduling & Lab Routing
 
 Categorizes items into clear dispatch timelines (IMMEDIATE, SAME SHIFT, NORMAL QUEUE) and links them directly to specialized forensic units (e.g., NIBIN ballistics entry, mobile forensic extraction, DNA STR profiling).
-- **Feature 5:** [Optional]
+
 
 ---
 
@@ -61,6 +61,8 @@ Categorizes items into clear dispatch timelines (IMMEDIATE, SAME SHIFT, NORMAL Q
 
 ```
 ├── src/                  # All source code
+|   ├── backend
+|   ├── frontend
 ├── docs/                 # Written documentation
 │   ├── problem-statement.md
 │   ├── solution-overview.md
