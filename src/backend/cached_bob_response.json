@@ -1,0 +1,59 @@
+{
+  "case_id": "HYD-2019-CR8921",
+  "total_items_processed": 4,
+  "urgent_alerts_count": 1,
+  "evidence_queue": [
+    {
+      "rank": 1,
+      "item_id": "EV-2019-8801",
+      "category": "Biological / DNA",
+      "description": "Half-burnt cigarette butt recovered near victim vehicle tire in unpaved dirt",
+      "location": "Sector 3 Dirt Path",
+      "priorityScore": 96,
+      "perishable": true,
+      "urgencyTag": "CRITICAL: PERISHABLE DNA",
+      "fslLab": "DNA Profiling Bureau",
+      "reasoning": "Unpreserved epithelial cells on cigarette filter subject to rapid microbial breakdown in ambient heat (34°C). Immediate cold storage and nucleic acid extraction required.",
+      "timestamp": "10:14 AM"
+    },
+    {
+      "rank": 2,
+      "item_id": "EV-2019-8802",
+      "category": "Digital Forensics",
+      "description": "Highway Toll Plaza CCTV DVR Hard Drive (200m south of incident scene)",
+      "location": "Control Office B",
+      "priorityScore": 88,
+      "perishable": false,
+      "urgencyTag": "PRIORITY 2: TIMELINE AUDIT",
+      "fslLab": "Cyber Forensics Lab",
+      "reasoning": "High probative value for establishing suspect route and timestamp confirmation. Drive must be imaged in write-blocked state.",
+      "timestamp": "10:22 AM"
+    },
+    {
+      "rank": 3,
+      "item_id": "EV-2019-8803",
+      "category": "Latent Prints",
+      "description": "Empty glass liquor bottle with visible partial fingerprints on neck",
+      "location": "Culvert Entrance",
+      "priorityScore": 74,
+      "perishable": false,
+      "urgencyTag": "STANDARD LATENT SWEEP",
+      "fslLab": "Fingerprint Bureau",
+      "reasoning": "Latent ridge impressions on non-porous surface. Moderate risk of smudging during physical transit.",
+      "timestamp": "10:35 AM"
+    },
+    {
+      "rank": 4,
+      "item_id": "EV-2019-8804",
+      "category": "Document Examination",
+      "description": "Store fuel purchase receipt dated 28/11/2019",
+      "location": "Near culvert entry",
+      "priorityScore": 52,
+      "perishable": true,
+      "urgencyTag": "HEAT SENSITIVE",
+      "fslLab": "Questioned Documents Unit",
+      "reasoning": "Thermal print paper degrades under direct UV exposure, but secondary associative priority compared to biological DNA.",
+      "timestamp": "10:40 AM"
+    }
+  ]
+}
