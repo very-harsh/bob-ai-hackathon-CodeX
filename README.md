@@ -8,10 +8,10 @@
 
 | Field | Value |
 |---|---|
-| **Team Name** | [Your Team Name] |
-| **Track** | [AI / DevOps / Sustainability / Open] |
-| **Team Lead** | [Name] — [email@ibm.com] |
-| **Members** | [Name 1], [Name 2], [Name 3] |
+| **Team Name** | CodeX |
+| **Track** | AI |
+| **Team Lead** | Harsh Sharma — in.harshsharma@gmail.com |
+| **Members** | Ankit Kumar, Kartikeya Arya, Auyash Dasmohapatra |
 
 ---
 
@@ -19,7 +19,7 @@
 
 > In 2–3 sentences: What problem does your project solve? Who experiences this problem?
 
-[Describe the real-world problem your project addresses. Be specific about who the user is and what pain point they face.]
+Field investigating officers and forensic technicians routinely struggle to prioritize dozens of recovered crime scene items under intense time pressure and without instant forensic expertise, causing crippling lab backlogs and the loss of perishable evidence. Our project solves this by converting raw field observations into an automated, risk-adjusted Forensic Science Laboratory (FSL) submission schedule grounded in real degradation science. This ensures volatile evidence—such as rapidly degrading biological DNA, weather-threatened impression marks, and remotely wipeable digital devices—is flagged, correctly packaged, and tested before it spoils.
 
 ---
 
@@ -27,16 +27,24 @@
 
 > In 2–3 sentences: What did you build? How does it solve the problem above?
 
-[Describe your solution clearly. Explain the core mechanism — what makes it work.]
+We built FSL Forensic Triage, a real-time, interactive decision-support application powered by IBM Bob that turns unstructured field notes into a prioritized laboratory dispatch schedule. Investigating officers simply describe raw observations—or push dynamic scene updates—and the system parses and cross-references each exhibit against an authoritative 76-parameter forensic matrix. It instantly ranks evidence by degradation risk, flags urgent items (such as remote-wipeable smartphones and bloody weapons) with immediate action triggers, and generates exhibit-specific packaging advisories to preserve chain of custody.
 
 ---
 
 ## ✨ Key Features
 
-- **Feature 1:** [Brief description — e.g., "Real-time anomaly detection using watsonx.ai"]
-- **Feature 2:** [Brief description]
-- **Feature 3:** [Brief description]
-- **Feature 4:** [Optional]
+- **Feature 1:** Interactive Natural Language Scene Logging & Dynamic Updates
+
+Allows field investigators to enter free-form narrative observations or push incremental discovery updates (e.g., secondary sweeps yielding touch DNA or weapons), automatically extracting and contextualizing exhibits in real time.
+- **Feature 2:** Domain-Grounded Forensic Matrix Mapping (EVID-001 to EVID-076)
+
+Eliminates black-box hallucination by deterministically binding extracted items to a 76-parameter forensic taxonomy with verified probative values, testing requirements, and degradation timelines.
+- **Feature 3:** Dynamic Contextual Risk Escalation Engine
+
+Intelligently recalibrates base priority scores to flag urgent degradation hazards—such as escalating live smartphones to Priority 10 due to remote-wipe risks or bloody weapons to Priority 9 for immediate DNA preservation.
+- **Feature 4:** Automated FSL Submission Scheduling & Lab Routing
+
+Categorizes items into clear dispatch timelines (IMMEDIATE, SAME SHIFT, NORMAL QUEUE) and links them directly to specialized forensic units (e.g., NIBIN ballistics entry, mobile forensic extraction, DNA STR profiling).
 - **Feature 5:** [Optional]
 
 ---
@@ -45,9 +53,9 @@
 
 | Category | Technologies |
 |---|---|
-| **Languages** | [e.g., Python, TypeScript] |
+| **Languages** | JavaScript,CSS |
 | **Frameworks** | [e.g., FastAPI, React] |
-| **IBM Technologies** | [e.g., watsonx.ai, IBM Bob, IBM Cloud] |
+| **IBM Technologies** | IBM Bob |
 | **Databases** | [e.g., PostgreSQL, Redis] |
 | **Other** | [e.g., Docker, GitHub Actions] |
 
