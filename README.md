@@ -81,8 +81,8 @@ Categorizes items into clear dispatch timelines (IMMEDIATE, SAME SHIFT, NORMAL Q
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/[your-repo].git
-cd [your-repo]
+git clone https://github.com/bob-ai-hackathon-CodeX.git
+cd bob-ai-hackathon-CodeX
 
 # 2. Install dependencies
 [your install command here]
