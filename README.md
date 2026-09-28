@@ -52,7 +52,6 @@ Categorizes items into clear dispatch timelines (IMMEDIATE, SAME SHIFT, NORMAL Q
 | **Languages** | JavaScript,CSS |
 | **Frameworks** | React |
 | **IBM Technologies** | IBM Bob |
-| **Databases** | |
 | **Other** | GitHub Actions |
 
 ---
